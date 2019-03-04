@@ -17,6 +17,9 @@ const authenticate = (email, password, username) => {
 
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' };
 
+  console.log('------------------------------------------------------------------------------------')
+  console.log('headers:', headers);
+
   axios
     .post(
       `${config.url}/authenticate`,
@@ -46,7 +49,7 @@ const authenticate = (email, password, username) => {
 }
 
 const userRead = () => {
-  const headers = { 'Authorization': "Bearer " + processData.token };
+  const headers = { Authorization: "Bearer " + processData.token };
 
   console.log('------------------------------------------------------------------------------------')
   console.log('headers:', headers);
@@ -54,16 +57,15 @@ const userRead = () => {
   axios
     .get(
       `${config.url}/user/1`,
-      null,
-      headers
+      { headers }
     )
     .then(resp => {
-      var user = resp.data;
+      var result = resp.data;
 
-      processData.user = user;
+      processData.user = result.data;
 
       console.log('------------------------------------------------------------------------------------')
-      console.table(processData);
+      console.table([processData.user]);
     })
     .catch(error => {
       console.log('------------------------------------------------------------------------------------')
@@ -77,5 +79,5 @@ const userRead = () => {
     ;
 }
 
-console.table(config);
+console.table([config]);
 authenticate(config.email, config.password, config.username);
