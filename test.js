@@ -5,7 +5,9 @@ const config = require('./config')
 const processData = {
   token: '',
   email: '',
-  user: {}
+  user: {},
+  userAuthenticated: {},
+  modules: []
 }
 
 const authenticate = (email, password, username) => {
@@ -31,6 +33,8 @@ const authenticate = (email, password, username) => {
 
       processData.token = token;
       processData.email = email;
+      processData.userAuthenticated = resp.data.user;
+      processData.modules = resp.data.user.profile.modules;
 
       console.log('------------------------------------------------------------------------------------')
       console.log(processData);
@@ -56,7 +60,7 @@ const userRead = () => {
 
   axios
     .get(
-      `${config.url}/user/1`,
+      `${config.url}/users/1`,
       { headers }
     )
     .then(resp => {
