@@ -1,0 +1,16 @@
+{
+  "name": "node-test-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [],
+  "author": "Angelito Casagrande",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "qs": "^6.6.0"
+  }
+}
